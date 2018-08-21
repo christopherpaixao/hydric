@@ -1,0 +1,100 @@
+<ion-header>
+  <ion-navbar>
+    <button menuToggle *ngIf="!selectedItem">
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Prontuário</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <h3 text-center *ngIf="selectedItem">
+    <ion-icon [name]="selectedItem.icon"></ion-icon>
+    {{selectedItem.title}}    
+  </h3>
+
+  <!--<h4 text-center *ngIf="selectedItem">
+    You navigated here from <b>{{selectedItem.title}}</b>
+  </h4>-->
+  <ion-item>
+    <ion-label>Horário</ion-label>
+    <ion-select [(ngModel)]="horario">
+      <ion-option value="oito">08:00</ion-option>
+      <ion-option value="dez">10:00</ion-option>
+      <ion-option value="doze">12:00</ion-option>
+      <ion-option value="quatorze">14:00</ion-option>
+      <ion-option value="dezesseis">16:00</ion-option>
+      <ion-option value="dezoito">18:00</ion-option>
+      <ion-option value="vinte">20:00</ion-option>
+      <ion-option value="vinteeduas">22:00</ion-option>
+      <ion-option value="vinteequatro">24:00</ion-option>
+      <ion-option value="duas">02:00</ion-option>
+      <ion-option value="quatro">04:00</ion-option>
+      <ion-option value="seis">06:00</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Pressão Arterial</ion-label>
+    <ion-input></ion-input>
+  </ion-item>  
+
+  <ion-item>
+    <ion-label floating>Frequência Cardíaca</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>TAX / ISOLETE</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Saturação SPO2</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>FIO2 / Nebulização</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>FR PAC / FR VM</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Modo VENT PEEP</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>P. INSP / T. INSP</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>PVC / PIC / PIA</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>DEXTRO</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Mudança Decúbito</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Densidade Urinária</ion-label>
+    <ion-input></ion-input>
+  </ion-item>
+
+<ion-item>
+  <button ion-button block>Salvar</button>
+</ion-item>
+</ion-content>
