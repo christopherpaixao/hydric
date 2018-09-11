@@ -1,8 +1,8 @@
 {
-  "name": "appMarqueyde",
+  "name": "hydric",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "author": "Trevo TI",
+  "homepage": "http://trevoti.com.br/",
   "private": true,
   "scripts": {
     "start": "ionic-app-scripts serve",
@@ -41,7 +41,7 @@
     "@ionic/app-scripts": "3.1.11",
     "typescript": "~2.6.2"
   },
-  "description": "An Ionic project",
+  "description": "Projeto de mestrado.",
   "cordova": {
     "plugins": {
       "cordova-plugin-whitelist": {},
