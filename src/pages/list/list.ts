@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 
 import { NavController, NavParams } from 'ionic-angular';
 
-import { ItemDetailsPage } from '../item-details/item-details';
+//import { SinaisVitaisPage } from '../sinais-vitais/sinais-vitais';
+import { SliderPage } from "../slider/slider";
 
 @Component({
   selector: 'page-list',
@@ -26,7 +27,7 @@ export class ListPage {
   }
 
   itemTapped(event, item) {
-    this.navCtrl.push(ItemDetailsPage, {
+    this.navCtrl.push(SliderPage, {
       item: item
     });
   }
