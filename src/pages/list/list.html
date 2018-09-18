@@ -3,18 +3,40 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Lista de Pacientes</ion-title>
+    <ion-title>Hydric</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
   <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon name="{{item.icon}}" item-left></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-right>
-        {{item.note}}
-      </div>
-    </button>
+    <ion-item-sliding *ngFor="let paciente of pacientes | async">
+      <ion-item>
+        <h1>{{ paciente.nome }}</h1>
+        <p>Leito: {{ paciente.leito }}</p>
+      </ion-item>
+      <ion-item-options side="left">
+        <button ion-button color="secondary" (click)="editarPaciente(paciente)">
+          <ion-icon name="create"></ion-icon>
+          Editar
+        </button>
+        <button ion-button color="danger" (click)="removerPaciente(paciente.key)">
+          <ion-icon name="trash"></ion-icon>
+          Remover
+        </button>
+      </ion-item-options>
+      <ion-item-options side="right">
+        <button ion-button color="primary" (click)="abrirProntuario(paciente)">
+          <ion-icon name="list-box"></ion-icon>
+          Prontuário
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
+
+  <ion-fab bottom right>
+    <button ion-fab color="primary" (click)="novoPaciente()">
+      <ion-icon name="add"></ion-icon>
+    </button>
+  </ion-fab>
 </ion-content>
+

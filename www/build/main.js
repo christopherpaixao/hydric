@@ -1,12 +1,135 @@
-webpackJsonp([4],{
+webpackJsonp([5],{
 
-/***/ 100:
+/***/ 151:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AjudaPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(42);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/**
+ * Generated class for the AjudaPage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+var AjudaPage = /** @class */ (function () {
+    function AjudaPage(navCtrl, navParams) {
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+    }
+    AjudaPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad AjudaPage');
+    };
+    AjudaPage = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
+            selector: 'page-ajuda',template:/*ion-inline-start:"/home/giordano/Documentos/Ionic Projetos/hydric/src/pages/ajuda/ajuda.html"*/'<!--\n  Generated template for the AjudaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Ajuda</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/home/giordano/Documentos/Ionic Projetos/hydric/src/pages/ajuda/ajuda.html"*/,
+        }),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
+    ], AjudaPage);
+    return AjudaPage;
+}());
+
+//# sourceMappingURL=ajuda.js.map
+
+/***/ }),
+
+/***/ 152:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PacienteProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database__ = __webpack_require__(234);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_angularfire2_database___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_angularfire2_database__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(466);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+var __assign = (this && this.__assign) || Object.assign || function(t) {
+    for (var s, i = 1, n = arguments.length; i < n; i++) {
+        s = arguments[i];
+        for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+            t[p] = s[p];
+    }
+    return t;
+};
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+var PacienteProvider = /** @class */ (function () {
+    function PacienteProvider(db) {
+        this.db = db;
+        this.PATH = "pacientes/";
+    }
+    PacienteProvider.prototype.getAll = function () {
+        return this.db.list(this.PATH, function (ref) { return ref.orderByChild('name'); })
+            .snapshotChanges()
+            .map(function (changes) {
+            return changes.map(function (c) { return (__assign({ key: c.payload.key }, c.payload.val())); });
+        });
+    };
+    PacienteProvider.prototype.get = function (key) {
+        return this.db.object(this.PATH + key).snapshotChanges()
+            .map(function (c) {
+            return __assign({ key: c.key }, c.payload.val());
+        });
+    };
+    PacienteProvider.prototype.save = function (paciente) {
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            if (paciente.key) {
+                _this.db.list(_this.PATH)
+                    .update(paciente.key, { nome: paciente.nome, leito: paciente.leito })
+                    .then(function () { return resolve(); })
+                    .catch(function (e) { return reject(e); });
+            }
+            else {
+                _this.db.list(_this.PATH)
+                    .push({ nome: paciente.nome, leito: paciente.leito })
+                    .then(function () { return resolve(); });
+            }
+        });
+    };
+    PacienteProvider.prototype.remove = function (key) {
+        return this.db.list(this.PATH).remove(key);
+    };
+    PacienteProvider = __decorate([
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_angularfire2_database__["AngularFireDatabase"]])
+    ], PacienteProvider);
+    return PacienteProvider;
+}());
+
+//# sourceMappingURL=paciente.js.map
+
+/***/ }),
+
+/***/ 153:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return InicioPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(42);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -45,52 +168,7 @@ var InicioPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 101:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SliderPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(24);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-/**
- * Generated class for the SliderPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var SliderPage = /** @class */ (function () {
-    function SliderPage(navCtrl, navParams) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-    }
-    SliderPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad SliderPage');
-    };
-    SliderPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-slider',template:/*ion-inline-start:"/home/giordano/Documentos/Ionic Projetos/hydric/src/pages/slider/slider.html"*/'<ion-content>\n  <ion-slides pager>\n\n    <ion-slide>\n      <ion-header>\n        <ion-navbar>\n          <button menuToggle *ngIf="!selectedItem">\n            <ion-icon name="menu"></ion-icon>\n          </button>\n          <ion-title>Sinais Vitais</ion-title>\n        </ion-navbar>\n      </ion-header>  \n    </ion-slide>\n\n  <ion-slide>\n    <ion-header>\n      <ion-navbar>\n         <ion-title>Balanço Hídrico</ion-title>\n      </ion-navbar>\n    </ion-header>\n  </ion-slide>\n  </ion-slides>\n\n</ion-content>\n'/*ion-inline-end:"/home/giordano/Documentos/Ionic Projetos/hydric/src/pages/slider/slider.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
-    ], SliderPage);
-    return SliderPage;
-}());
-
-//# sourceMappingURL=slider.js.map
-
-/***/ }),
-
-/***/ 111:
+/***/ 191:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -103,29 +181,33 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 111;
+webpackEmptyAsyncContext.id = 191;
 
 /***/ }),
 
-/***/ 152:
+/***/ 233:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/ajuda/ajuda.module": [
-		272,
-		3
+		495,
+		4
 	],
 	"../pages/balanco-hidrico/balanco-hidrico.module": [
-		273,
+		496,
+		1
+	],
+	"../pages/editar-paciente/editar-paciente.module": [
+		497,
 		0
 	],
 	"../pages/inicio/inicio.module": [
-		274,
-		2
+		498,
+		3
 	],
 	"../pages/slider/slider.module": [
-		275,
-		1
+		499,
+		2
 	]
 };
 function webpackAsyncContext(req) {
@@ -139,19 +221,19 @@ function webpackAsyncContext(req) {
 webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
-webpackAsyncContext.id = 152;
+webpackAsyncContext.id = 233;
 module.exports = webpackAsyncContext;
 
 /***/ }),
 
-/***/ 192:
+/***/ 284:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ListPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__slider_slider__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__providers_paciente_paciente__ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(42);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -163,32 +245,41 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
-//import { SinaisVitaisPage } from '../sinais-vitais/sinais-vitais';
 
 var ListPage = /** @class */ (function () {
-    function ListPage(navCtrl, navParams) {
+    function ListPage(navCtrl, provider, toast) {
         this.navCtrl = navCtrl;
-        this.navParams = navParams;
-        this.icons = ['contact', 'contact', 'contact', 'contact', 'contact'];
-        this.items = [];
-        for (var i = 1; i < 6; i++) {
-            this.items.push({
-                title: 'Paciente ' + i,
-                note: 'Prontuário: ' + i,
-                icon: this.icons[Math.floor(Math.random() * this.icons.length)]
+        this.provider = provider;
+        this.toast = toast;
+        this.pacientes = this.provider.getAll();
+    }
+    ListPage.prototype.novoPaciente = function () {
+        this.navCtrl.push('EditarPacientePage');
+    };
+    ListPage.prototype.editarPaciente = function (paciente) {
+        this.navCtrl.push('EditarPacientePage', { paciente: paciente });
+    };
+    ListPage.prototype.removerPaciente = function (key) {
+        var _this = this;
+        if (key) {
+            this.provider.remove(key)
+                .then(function () {
+                _this.toast.create({ message: 'Paciente removido sucesso.', duration: 3000 }).present();
+            })
+                .catch(function () {
+                _this.toast.create({ message: 'Erro ao remover o paciente.', duration: 3000 }).present();
             });
         }
-    }
-    ListPage.prototype.itemTapped = function (event, item) {
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__slider_slider__["a" /* SliderPage */], {
-            item: item
-        });
+    };
+    ListPage.prototype.abrirProntuario = function (paciente) {
+        this.navCtrl.push('SliderPage', { paciente: paciente });
     };
     ListPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-list',template:/*ion-inline-start:"/home/giordano/Documentos/Ionic Projetos/hydric/src/pages/list/list.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Lista de Pacientes</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <ion-list>\n    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">\n      <ion-icon name="{{item.icon}}" item-left></ion-icon>\n      {{item.title}}\n      <div class="item-note" item-right>\n        {{item.note}}\n      </div>\n    </button>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/home/giordano/Documentos/Ionic Projetos/hydric/src/pages/list/list.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["m" /* Component */])({
+            selector: 'page-list',template:/*ion-inline-start:"/home/giordano/Documentos/Ionic Projetos/hydric/src/pages/list/list.html"*/'<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Hydric</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-list>\n    <ion-item-sliding *ngFor="let paciente of pacientes | async">\n      <ion-item>\n        <h1>{{ paciente.nome }}</h1>\n        <p>Leito: {{ paciente.leito }}</p>\n      </ion-item>\n      <ion-item-options side="left">\n        <button ion-button color="secondary" (click)="editarPaciente(paciente)">\n          <ion-icon name="create"></ion-icon>\n          Editar\n        </button>\n        <button ion-button color="danger" (click)="removerPaciente(paciente.key)">\n          <ion-icon name="trash"></ion-icon>\n          Remover\n        </button>\n      </ion-item-options>\n      <ion-item-options side="right">\n        <button ion-button color="primary" (click)="abrirProntuario(paciente)">\n          <ion-icon name="list-box"></ion-icon>\n          Prontuário\n        </button>\n      </ion-item-options>\n    </ion-item-sliding>\n  </ion-list>\n\n  <ion-fab bottom right>\n    <button ion-fab color="primary" (click)="novoPaciente()">\n      <ion-icon name="add"></ion-icon>\n    </button>\n  </ion-fab>\n</ion-content>\n\n'/*ion-inline-end:"/home/giordano/Documentos/Ionic Projetos/hydric/src/pages/list/list.html"*/
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_0__providers_paciente_paciente__["a" /* PacienteProvider */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["j" /* ToastController */]])
     ], ListPage);
     return ListPage;
 }());
@@ -197,13 +288,13 @@ var ListPage = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 197:
+/***/ 290:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(198);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(220);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(291);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(423);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -211,22 +302,26 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 220:
+/***/ 423:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(31);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(48);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(263);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_sinais_vitais_sinais_vitais__ = __webpack_require__(271);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_list_list__ = __webpack_require__(192);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_inicio_inicio__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_slider_slider__ = __webpack_require__(101);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_status_bar__ = __webpack_require__(193);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_splash_screen__ = __webpack_require__(196);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_ajuda_ajuda__ = __webpack_require__(99);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2__ = __webpack_require__(485);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_angularfire2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_angularfire2__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angularfire2_database__ = __webpack_require__(234);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angularfire2_database___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_angularfire2_database__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__app_component__ = __webpack_require__(486);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_sinais_vitais_sinais_vitais__ = __webpack_require__(494);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_list_list__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__pages_inicio_inicio__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_status_bar__ = __webpack_require__(285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__ionic_native_splash_screen__ = __webpack_require__(288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_ajuda_ajuda__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__providers_paciente_paciente__ = __webpack_require__(152);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -237,7 +332,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-//import { HelloIonicPage } from '../pages/hello-ionic/hello-ionic';
+
+
 
 
 
@@ -251,37 +347,46 @@ var AppModule = /** @class */ (function () {
     AppModule = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["I" /* NgModule */])({
             declarations: [
-                __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */],
-                __WEBPACK_IMPORTED_MODULE_4__pages_sinais_vitais_sinais_vitais__["a" /* SinaisVitaisPage */],
-                __WEBPACK_IMPORTED_MODULE_5__pages_list_list__["a" /* ListPage */],
-                __WEBPACK_IMPORTED_MODULE_6__pages_inicio_inicio__["a" /* InicioPage */],
-                __WEBPACK_IMPORTED_MODULE_7__pages_slider_slider__["a" /* SliderPage */],
-                __WEBPACK_IMPORTED_MODULE_10__pages_ajuda_ajuda__["a" /* AjudaPage */]
+                __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */],
+                __WEBPACK_IMPORTED_MODULE_6__pages_sinais_vitais_sinais_vitais__["a" /* SinaisVitaisPage */],
+                __WEBPACK_IMPORTED_MODULE_7__pages_list_list__["a" /* ListPage */],
+                __WEBPACK_IMPORTED_MODULE_8__pages_inicio_inicio__["a" /* InicioPage */],
+                __WEBPACK_IMPORTED_MODULE_11__pages_ajuda_ajuda__["a" /* AjudaPage */]
             ],
             imports: [
                 __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], {}, {
+                __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */], {}, {
                     links: [
                         { loadChildren: '../pages/ajuda/ajuda.module#AjudaPageModule', name: 'AjudaPage', segment: 'ajuda', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/balanco-hidrico/balanco-hidrico.module#BalancoHidricoPageModule', name: 'BalancoHidricoPage', segment: 'balanco-hidrico', priority: 'low', defaultHistory: [] },
+                        { loadChildren: '../pages/editar-paciente/editar-paciente.module#EditarPacientePageModule', name: 'EditarPacientePage', segment: 'editar-paciente', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/inicio/inicio.module#InicioPageModule', name: 'InicioPage', segment: 'inicio', priority: 'low', defaultHistory: [] },
                         { loadChildren: '../pages/slider/slider.module#SliderPageModule', name: 'SliderPage', segment: 'slider', priority: 'low', defaultHistory: [] }
                     ]
                 }),
+                __WEBPACK_IMPORTED_MODULE_3_angularfire2__["AngularFireModule"].initializeApp({
+                    apiKey: "AIzaSyC7LeW-7yBXUea9ofafA8_kenD4Ut1eKII",
+                    authDomain: "appfirebase-1bd5a.firebaseapp.com",
+                    databaseURL: "https://appfirebase-1bd5a.firebaseio.com",
+                    projectId: "appfirebase-1bd5a",
+                    storageBucket: "appfirebase-1bd5a.appspot.com",
+                    messagingSenderId: "314925257716"
+                }),
+                __WEBPACK_IMPORTED_MODULE_4_angularfire2_database__["AngularFireDatabaseModule"]
             ],
             bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["a" /* IonicApp */]],
             entryComponents: [
-                __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */],
-                __WEBPACK_IMPORTED_MODULE_4__pages_sinais_vitais_sinais_vitais__["a" /* SinaisVitaisPage */],
-                __WEBPACK_IMPORTED_MODULE_5__pages_list_list__["a" /* ListPage */],
-                __WEBPACK_IMPORTED_MODULE_6__pages_inicio_inicio__["a" /* InicioPage */],
-                __WEBPACK_IMPORTED_MODULE_7__pages_slider_slider__["a" /* SliderPage */],
-                __WEBPACK_IMPORTED_MODULE_10__pages_ajuda_ajuda__["a" /* AjudaPage */]
+                __WEBPACK_IMPORTED_MODULE_5__app_component__["a" /* MyApp */],
+                __WEBPACK_IMPORTED_MODULE_6__pages_sinais_vitais_sinais_vitais__["a" /* SinaisVitaisPage */],
+                __WEBPACK_IMPORTED_MODULE_7__pages_list_list__["a" /* ListPage */],
+                __WEBPACK_IMPORTED_MODULE_8__pages_inicio_inicio__["a" /* InicioPage */],
+                __WEBPACK_IMPORTED_MODULE_11__pages_ajuda_ajuda__["a" /* AjudaPage */]
             ],
             providers: [
-                __WEBPACK_IMPORTED_MODULE_8__ionic_native_status_bar__["a" /* StatusBar */],
-                __WEBPACK_IMPORTED_MODULE_9__ionic_native_splash_screen__["a" /* SplashScreen */],
-                { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicErrorHandler */] }
+                __WEBPACK_IMPORTED_MODULE_9__ionic_native_status_bar__["a" /* StatusBar */],
+                __WEBPACK_IMPORTED_MODULE_10__ionic_native_splash_screen__["a" /* SplashScreen */],
+                { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["u" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicErrorHandler */] },
+                __WEBPACK_IMPORTED_MODULE_12__providers_paciente_paciente__["a" /* PacienteProvider */]
             ]
         })
     ], AppModule);
@@ -292,18 +397,18 @@ var AppModule = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 263:
+/***/ 486:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_list_list__ = __webpack_require__(192);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_inicio_inicio__ = __webpack_require__(100);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_ajuda_ajuda__ = __webpack_require__(99);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__ = __webpack_require__(193);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_splash_screen__ = __webpack_require__(196);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__pages_list_list__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__pages_inicio_inicio__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_ajuda_ajuda__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__ = __webpack_require__(285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_splash_screen__ = __webpack_require__(288);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -357,7 +462,7 @@ var MyApp = /** @class */ (function () {
         __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* Nav */])
     ], MyApp.prototype, "nav", void 0);
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/home/giordano/Documentos/Ionic Projetos/hydric/src/app/app.html"*/'<ion-menu [content]="content">\n\n  <ion-header>\n    <ion-toolbar>\n      <ion-title>Hydric</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n      <button ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{p.title}}\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n'/*ion-inline-end:"/home/giordano/Documentos/Ionic Projetos/hydric/src/app/app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"/home/giordano/Documentos/Ionic Projetos/hydric/src/app/app.html"*/'<ion-menu [content]="content">\n\n  <ion-header>\n    <ion-toolbar>\n      <ion-title>Índice</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n      <button ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{p.title}}\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>\n'/*ion-inline-end:"/home/giordano/Documentos/Ionic Projetos/hydric/src/app/app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* Platform */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* MenuController */],
@@ -371,13 +476,13 @@ var MyApp = /** @class */ (function () {
 
 /***/ }),
 
-/***/ 271:
+/***/ 494:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SinaisVitaisPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(24);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(42);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -407,52 +512,7 @@ var SinaisVitaisPage = /** @class */ (function () {
 
 //# sourceMappingURL=sinais-vitais.js.map
 
-/***/ }),
-
-/***/ 99:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AjudaPage; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(24);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-/**
- * Generated class for the AjudaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-var AjudaPage = /** @class */ (function () {
-    function AjudaPage(navCtrl, navParams) {
-        this.navCtrl = navCtrl;
-        this.navParams = navParams;
-    }
-    AjudaPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad AjudaPage');
-    };
-    AjudaPage = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-ajuda',template:/*ion-inline-start:"/home/giordano/Documentos/Ionic Projetos/hydric/src/pages/ajuda/ajuda.html"*/'<!--\n  Generated template for the AjudaPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n  <ion-navbar>\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Ajuda</ion-title>\n  </ion-navbar>\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>\n'/*ion-inline-end:"/home/giordano/Documentos/Ionic Projetos/hydric/src/pages/ajuda/ajuda.html"*/,
-        }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavParams */]])
-    ], AjudaPage);
-    return AjudaPage;
-}());
-
-//# sourceMappingURL=ajuda.js.map
-
 /***/ })
 
-},[197]);
+},[290]);
 //# sourceMappingURL=main.js.map
