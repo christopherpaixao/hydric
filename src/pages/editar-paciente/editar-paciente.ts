@@ -28,7 +28,23 @@ export class EditarPacientePage {
     this.form = this.formBuilder.group({
       key: [this.paciente.key],
       nome: [this.paciente.nome, Validators.required],
+      datanasc: [this.paciente.datanasc, Validators.required],
+      cpf: [this.paciente.cpf, Validators.required],
+      idade: [this.paciente.idade, Validators.required],
+      gender: [this.paciente.gender],
+      tel: [this.paciente.tel, Validators.required],
+      cep: [this.paciente.cep],
+      end: [this.paciente.end, Validators.required],
+      bairro: [this.paciente.bairro, Validators.required],
+      cidade: [this.paciente.cidade, Validators.required],
+      mae: [this.paciente.mae, Validators.required],
+      convenio: [this.paciente.convenio],
+      ctg: [this.paciente.ctg, Validators.required],
+      entd: [this.paciente.entd, Validators.required],
+      ocupacao: [this.paciente.ocupacao],
+      setor: [this.paciente.setor],
       leito: [this.paciente.leito, Validators.required],
+      medico: [this.paciente.medico, Validators.required]
     });
   }
 

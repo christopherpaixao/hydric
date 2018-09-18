@@ -10,7 +10,7 @@ export class PacienteProvider {
   }
 
   getAll() {
-    return this.db.list(this.PATH, ref => ref.orderByChild('name'))
+    return this.db.list(this.PATH, ref => ref.orderByChild('nome'))
       .snapshotChanges()
       .map(changes => {
         return changes.map(c => ({ key: c.payload.key, ...c.payload.val() }));
@@ -28,12 +28,49 @@ export class PacienteProvider {
     return new Promise((resolve, reject) => {
       if (paciente.key) {
         this.db.list(this.PATH)
-          .update(paciente.key, { nome: paciente.nome, leito: paciente.leito })
+          .update(paciente.key, { 
+            nome: paciente.nome,
+            datanasc: paciente.datanasc,
+            cpf: paciente.cpf,
+            idade: paciente.idade,
+            gender: paciente.gender,
+            tel: paciente.tel,
+            cep: paciente.cep,
+            end: paciente.end,
+            bairro: paciente.bairro,
+            cidade: paciente.cidade,
+            mae: paciente.mae,
+            convenio: paciente.convenio,
+            ctg: paciente.ctg,
+            entd: paciente.entd,
+            ocupacao: paciente.ocupacao,
+            setor: paciente.setor,
+            leito: paciente.leito,
+            medico: paciente.medico
+          })
           .then(() => resolve())
           .catch((e) => reject(e));
       } else {
         this.db.list(this.PATH)
-          .push({ nome: paciente.nome, leito: paciente.leito })
+          .push({
+            nome: paciente.nome,
+            datanasc: paciente.datanasc,
+            cpf: paciente.cpf,
+            idade: paciente.idade,
+            gender: paciente.gender,
+            tel: paciente.tel,
+            cep: paciente.cep,
+            end: paciente.end,
+            bairro: paciente.bairro,
+            cidade: paciente.cidade,
+            mae: paciente.mae,
+            convenio: paciente.convenio,
+            ctg: paciente.ctg,
+            entd: paciente.entd,
+            ocupacao: paciente.ocupacao,
+            setor: paciente.setor,
+            leito: paciente.leito,
+            medico: paciente.medico })
           .then(() => resolve());
       }
     })

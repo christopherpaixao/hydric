@@ -6,28 +6,171 @@
 
 <ion-content padding>
   <form [formGroup]="form">
-    <ion-item>
-      <ion-label stacked>Nome</ion-label>
-      <ion-input type="text" formControlName="nome" ></ion-input>
-    </ion-item>
-    <ion-item *ngIf="!form.controls.nome.valid && (form.controls.nome.dirty || form.controls.nome.touched)" color="danger">
-      <div [hidden]="!form.controls.nome.errors.required">
-        O campo é obrigatório
-      </div>
-    </ion-item>
 
-    <ion-item>
-      <ion-label stacked>Leito</ion-label>
-      <ion-input type="tel" formControlName="leito"></ion-input>
-    </ion-item>
-    <ion-item *ngIf="!form.controls.leito.valid && (form.controls.leito.dirty || form.controls.leito.touched)" color="danger">
-      <div [hidden]="!form.controls.leito.errors.required">
-        O campo é obrigatório
-      </div>
-    </ion-item>
-
-    <div padding>
-      <button ion-button block type="submit" [disabled]="!form.valid" (click)="onSubmit()">Salvar</button>
-    </div>
+        <ion-item>
+          <ion-label stacked>Nome</ion-label>
+          <ion-input type="text" formControlName="nome"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!form.controls.nome.valid && (form.controls.nome.dirty || form.controls.nome.touched)" color="danger">
+          <div [hidden]="!form.controls.nome.errors.required">
+            O campo é obrigatório
+          </div>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label stacked>Data de Nascimento</ion-label>
+          <ion-input type="date" formControlName="datanasc"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!form.controls.datanasc.valid && (form.controls.datanasc.dirty || form.controls.datanasc.touched)" color="danger">
+          <div [hidden]="!form.controls.datanasc.errors.required">
+            O campo é obrigatório
+          </div>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label stacked>CPF</ion-label>
+          <ion-input type="number" formControlName="cpf"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!form.controls.cpf.valid && (form.controls.cpf.dirty || form.controls.cpf.touched)" color="danger">
+          <div [hidden]="!form.controls.cpf.errors.required">
+            O campo é obrigatório
+          </div>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label stacked>Idade</ion-label>
+          <ion-input type="number" formControlName="idade"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!form.controls.idade.valid && (form.controls.idade.dirty || form.controls.idade.touched)" color="danger">
+          <div [hidden]="!form.controls.idade.errors.required">
+            O campo é obrigatório
+          </div>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label stacked>Sexo</ion-label>
+          <ion-select formControlName="gender">
+            <ion-option value="f">Feminino</ion-option>
+            <ion-option value="m">Masculino</ion-option>
+          </ion-select>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label stacked>Telefone</ion-label>
+          <ion-input type="number" formControlName="tel"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!form.controls.tel.valid && (form.controls.tel.dirty || form.controls.tel.touched)" color="danger">
+          <div [hidden]="!form.controls.tel.errors.required">
+            O campo é obrigatório
+          </div>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label stacked>CEP</ion-label>
+          <ion-input type="number" formControlName="cep"></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label stacked>Endereço</ion-label>
+          <ion-input type="text" formControlName="end"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!form.controls.end.valid && (form.controls.end.dirty || form.controls.end.touched)" color="danger">
+          <div [hidden]="!form.controls.end.errors.required">
+            O campo é obrigatório
+          </div>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label stacked>Bairro</ion-label>
+          <ion-input type="text" formControlName="bairro"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!form.controls.bairro.valid && (form.controls.bairro.dirty || form.controls.bairro.touched)" color="danger">
+          <div [hidden]="!form.controls.bairro.errors.required">
+            O campo é obrigatório
+          </div>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label stacked>Cidade</ion-label>
+          <ion-input type="text" formControlName="cidade"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!form.controls.cidade.valid && (form.controls.cidade.dirty || form.controls.cidade.touched)" color="danger">
+          <div [hidden]="!form.controls.cidade.errors.required">
+            O campo é obrigatório
+          </div>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label stacked>Nome da Mãe</ion-label>
+          <ion-input type="text" formControlName="mae"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!form.controls.mae.valid && (form.controls.mae.dirty || form.controls.mae.touched)" color="danger">
+          <div [hidden]="!form.controls.mae.errors.required">
+            O campo é obrigatório
+          </div>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label stacked>Convênio</ion-label>
+          <ion-select formControlName="convenio">
+            <ion-option value="particular">Particular</ion-option>
+            <ion-option value="unimed">Unimed</ion-option>
+            <ion-option value="vale">Vale</ion-option>
+          </ion-select>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label stacked>Categoria</ion-label>
+          <ion-input type="text" formControlName="ctg"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!form.controls.ctg.valid && (form.controls.ctg.dirty || form.controls.ctg.touched)" color="danger">
+          <div [hidden]="!form.controls.ctg.errors.required">
+            O campo é obrigatório
+          </div>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label stacked>Data da Entrada</ion-label>
+          <ion-input type="date" formControlName="entd"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!form.controls.entd.valid && (form.controls.entd.dirty || form.controls.entd.touched)" color="danger">
+          <div [hidden]="!form.controls.entd.errors.required">
+            O campo é obrigatório
+          </div>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label stacked>Acomodação</ion-label>
+          <ion-input type="text" formControlName="ocupacao"></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label stacked>Setor</ion-label>
+          <ion-input type="text" formControlName="setor"></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label stacked>Quarto/Leito</ion-label>
+          <ion-input type="text" formControlName="leito"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!form.controls.leito.valid && (form.controls.leito.dirty || form.controls.leito.touched)" color="danger">
+          <div [hidden]="!form.controls.leito.errors.required">
+            O campo é obrigatório
+          </div>
+        </ion-item>
+        
+        <ion-item>
+          <ion-label stacked>Médico Responsável</ion-label>
+          <ion-input type="text" formControlName="medico"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="!form.controls.medico.valid && (form.controls.medico.dirty || form.controls.medico.touched)" color="danger">
+          <div [hidden]="!form.controls.medico.errors.required">
+            O campo é obrigatório
+          </div>
+        </ion-item>
+        
+        <div padding>
+          <button ion-button block type="submit" [disabled]="!form.valid" (click)="onSubmit()">Salvar</button>
+        </div>
   </form>
 </ion-content>

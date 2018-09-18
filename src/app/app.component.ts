@@ -2,10 +2,10 @@ import { Component, ViewChild } from '@angular/core';
 
 import { Platform, MenuController, Nav } from 'ionic-angular';
 import { ListPage } from '../pages/list/list';
-import { InicioPage } from "../pages/inicio/inicio";
 import { AjudaPage } from "../pages/ajuda/ajuda";
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+//import { EditarPacientePage } from '../pages/editar-paciente/editar-paciente';
 
 
 @Component({
@@ -30,7 +30,7 @@ export class MyApp {
     this.pages = [
       //{ title: 'Hello Ionic', component: HelloIonicPage },
       { title: 'Lista de Pacientes', component: ListPage },
-      { title: 'Cadastro de Pacientes', component: InicioPage},
+      //{ title: 'Cadastro de Pacientes', component: EditarPacientePage},
       { title: 'Ajuda', component: AjudaPage }
     ];
   }

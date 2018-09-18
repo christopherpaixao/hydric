@@ -14,6 +14,7 @@ import { PacienteProvider } from '../providers/paciente/paciente';
 
 
 
+
 @NgModule({
   declarations: [
     MyApp,    
